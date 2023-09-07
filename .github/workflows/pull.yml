@@ -21,20 +21,25 @@ jobs:
           PATHOGEN: ${{ github.event.client_payload.pathogen || github.event.inputs.pathogen }}
         run: |
           echo "Pathogen: $PATHOGEN"
-          cd $PATHOGEN
-          # make directory with current date
-          date=$(date +%Y-%m-%d)
-          mkdir $date
-          # download pathogen barcodes
-          wget -O $date/barcode.csv https://raw.githubusercontent.com/gp201/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.csv --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
-          wget -O $date/barcode.html https://raw.githubusercontent.com/gp201/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.html --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
-          wget -O $date/auspice_tree.json https://raw.githubusercontent.com/gp201/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/data/auspice_tree.json --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
-          wget -O $date/reference.fasta https://raw.githubusercontent.com/gp201/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/data/reference.fasta --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
-          # commit and push
-          git pull origin main
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git config --global user.name "github-actions[bot]"
-          git add $date
-          git commit -m "Add pathogen barcodes for $PATHOGEN"
-          git push
+          # check if folder named pathogen exists
+          if [ ! -d "$PATHOGEN" ]; then
+            echo "Pathogen $PATHOGEN does not exist"
+          else
+            cd $PATHOGEN
+            # make directory with current date
+            date=$(date +%Y-%m-%d)
+            mkdir $date
+            # download pathogen barcodes
+            wget -O $date/barcode.csv https://raw.githubusercontent.com/gp201/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.csv --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
+            wget -O $date/barcode.html https://raw.githubusercontent.com/gp201/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.html --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
+            wget -O $date/auspice_tree.json https://raw.githubusercontent.com/gp201/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/data/auspice_tree.json --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
+            wget -O $date/reference.fasta https://raw.githubusercontent.com/gp201/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/data/reference.fasta --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
+            # commit and push
+            git pull origin main
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git config --global user.name "github-actions[bot]"
+            git add $date
+            git commit -m "Add pathogen barcodes for $PATHOGEN"
+            git push
+          fi
 
