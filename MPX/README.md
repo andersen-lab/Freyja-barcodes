@@ -1,3 +1,4 @@
 # Monkeypox
 ## Data sources
-1. [Nextstrain](https://nextstrain.org/monkeypox/hmpxv1)
+1. [Nextstrain](https://nextstrain.org/mpox/all-clades)
+2. 
