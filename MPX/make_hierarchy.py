@@ -34,7 +34,12 @@ hierarchy = []
 for clade in all_clades:
     h0 = {}
     h0['name'] = clade
-    h0['alias'] = clade
+    if 'Ia' in clade:
+        h0['alias'] = clade.replace('Ia','I.a')
+    elif 'Ib' in clade:
+        h0['alias'] = clade.replace('Ib','I.b')
+    else:
+        h0['alias'] = clade
     if clade_info.loc[clade,'site'] != 'MPX-root':
         h0['parent'] = clade_info.loc[clade,'site']
     h0['children'] = getDescendant(clade) + [clade]
