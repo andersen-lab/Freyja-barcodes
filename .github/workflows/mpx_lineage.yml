@@ -1,0 +1,39 @@
+name: Update MPX lineages
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'MPX/**'
+
+jobs:
+  update_mpx_lineages:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          pip install pandas==2.2.2 pyyaml==6.0.2
+          cd MPX && python make_hierarchy.py
+          # copy the mpox_lineages.yml to the last created folder
+          date=$(ls -td -- */ | head -n 1 | cut -d'/' -f1)
+          # copy only if the file does not exist
+          if [ ! -f "$date/mpox_lineages.yml" ]; then
+            cp mpox_lineages.yml $date
+          fi
+          cp mpox_lineages.yml latest
+      - name: Commit and push
+        run: |
+          git pull origin main
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
+          git add MPX
+          git add latest
+          git commit -m "Update MPX lineages"
+          git push
