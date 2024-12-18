@@ -1,6 +1,5 @@
 import yaml
 import pandas as pd
-import re
 
 clade_info = pd.read_csv("https://raw.githubusercontent.com/nextstrain/mpox/refs/heads/master/phylogenetic/defaults/clades.tsv",sep='\t',skiprows=1)
 clade_info = clade_info[clade_info['gene']=='clade']
