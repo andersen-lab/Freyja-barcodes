@@ -25,7 +25,7 @@ def getDescendant(clade0):
         children = list(children.index)
         for c in children:
             c0 = getDescendant(c)
-        children += c0
+            children += c0
         return children
     else:
         return []
@@ -42,7 +42,9 @@ for clade in all_clades:
         h0['alias'] = clade
     if clade_info.loc[clade,'site'] != 'MPX-root':
         h0['parent'] = clade_info.loc[clade,'site']
-    h0['children'] = getDescendant(clade) + [clade]
+    children = list(set(getDescendant(clade) + [clade]))
+    children.sort()
+    h0['children'] = children
     hierarchy.append(h0)
 
 with open('mpox_lineages.yml', 'w') as yaml_file:
