@@ -1,0 +1,158 @@
+- name: MEASLES-H2
+  alias: MEASLES-H.2
+  parent: MEASLES-H
+  children:
+  - MEASLES-H2
+- name: MEASLES-H1
+  alias: MEASLES-H.1
+  parent: MEASLES-H
+  children:
+  - MEASLES-H1
+- name: MEASLES-G1
+  alias: MEASLES-G.1
+  parent: MEASLES-G
+  children:
+  - MEASLES-G1
+- name: MEASLES-G2
+  alias: MEASLES-G.2
+  parent: MEASLES-G
+  children:
+  - MEASLES-G2
+- name: MEASLES-G3
+  alias: MEASLES-G.3
+  parent: MEASLES-G
+  children:
+  - MEASLES-G3
+- name: MEASLES-F
+  alias: MEASLES-F
+  children:
+  - MEASLES-F
+- name: MEASLES-E
+  alias: MEASLES-E
+  children:
+  - MEASLES-E
+- name: MEASLES-D1
+  alias: MEASLES-D.1
+  parent: MEASLES-D
+  children:
+  - MEASLES-D1
+- name: MEASLES-A
+  alias: MEASLES-A
+  children:
+  - MEASLES-A
+- name: MEASLES-D6
+  alias: MEASLES-D.6
+  parent: MEASLES-D
+  children:
+  - MEASLES-D6
+- name: MEASLES-C2
+  alias: MEASLES-C.2
+  parent: MEASLES-C
+  children:
+  - MEASLES-C2
+- name: MEASLES-B2
+  alias: MEASLES-B.2
+  parent: MEASLES-B
+  children:
+  - MEASLES-B2
+- name: MEASLES-B1
+  alias: MEASLES-B.1
+  parent: MEASLES-B
+  children:
+  - MEASLES-B1
+- name: MEASLES-D10
+  alias: MEASLES-D.10
+  parent: MEASLES-D
+  children:
+  - MEASLES-D10
+- name: MEASLES-D2
+  alias: MEASLES-D.2
+  parent: MEASLES-D
+  children:
+  - MEASLES-D2
+- name: MEASLES-C1
+  alias: MEASLES-C.1
+  parent: MEASLES-C
+  children:
+  - MEASLES-C1
+- name: MEASLES-B3
+  alias: MEASLES-B.3
+  parent: MEASLES-B
+  children:
+  - MEASLES-B3
+- name: MEASLES-D4
+  alias: MEASLES-D.4
+  parent: MEASLES-D
+  children:
+  - MEASLES-D4
+- name: MEASLES-D8
+  alias: MEASLES-D.8
+  parent: MEASLES-D
+  children:
+  - MEASLES-D8
+- name: MEASLES-D5
+  alias: MEASLES-D.5
+  parent: MEASLES-D
+  children:
+  - MEASLES-D5
+- name: MEASLES-D11
+  alias: MEASLES-D.11
+  parent: MEASLES-D
+  children:
+  - MEASLES-D11
+- name: MEASLES-D7
+  alias: MEASLES-D.7
+  parent: MEASLES-D
+  children:
+  - MEASLES-D7
+- name: MEASLES-D3
+  alias: MEASLES-D.3
+  parent: MEASLES-D
+  children:
+  - MEASLES-D3
+- name: MEASLES-D9
+  alias: MEASLES-D.9
+  parent: MEASLES-D
+  children:
+  - MEASLES-D9
+- name: MEASLES-H
+  alias: MEASLES-H
+  children:
+  - MEASLES-H2
+  - MEASLES-H1
+  - MEASLES-H
+- name: MEASLES-G
+  alias: MEASLES-G
+  children:
+  - MEASLES-G1
+  - MEASLES-G2
+  - MEASLES-G3
+  - MEASLES-G
+- name: MEASLES-D
+  alias: MEASLES-D
+  children:
+  - MEASLES-D1
+  - MEASLES-D6
+  - MEASLES-D10
+  - MEASLES-D2
+  - MEASLES-D4
+  - MEASLES-D8
+  - MEASLES-D5
+  - MEASLES-D11
+  - MEASLES-D7
+  - MEASLES-D3
+  - MEASLES-D9
+  - MEASLES-D
+- name: MEASLES-C
+  alias: MEASLES-C
+  children:
+  - MEASLES-C2
+  - MEASLES-C1
+  - MEASLES-C
+- name: MEASLES-B
+  alias: MEASLES-B
+  children:
+  - MEASLES-B2
+  - MEASLES-B1
+  - MEASLES-B3
+  - MEASLES-B
