@@ -67,6 +67,6 @@ for clade in all_clades:
     h0['children'] = children
     hierarchy.append(h0)
 
-with open('lineages.yml', 'w') as yaml_file:
+with open('latest/lineages.yml', 'w') as yaml_file:
     yaml.dump(hierarchy,yaml_file,sort_keys=False)
 
