@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - lineageyml_scripts
+      - main
     paths:
       - 'MPX/**'
       - 'MEASLESgenome/**'
