@@ -4,18 +4,18 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - main
       - lineageyml_scripts
     paths:
       - 'MPX/**'
       - 'MEASLESgenome/**'
+      - 'H5Nx-cattle/**'
 
 jobs:
   update_lineages:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        dataset: [MPX, MEASLESgenome]
+        dataset: [MPX, MEASLESgenome, H5Nx-cattle]
 
     defaults:
       run:
@@ -30,7 +30,7 @@ jobs:
 
       - name: Build lineage hierarchy
         run: |
-          pip install pandas==2.2.2 pyyaml==6.0.2
+          pip install pandas==2.2.2 pyyaml==6.0.2 numpy==2.3.5
 
           cd ${{ matrix.dataset }} && python make_hierarchy.py
 
