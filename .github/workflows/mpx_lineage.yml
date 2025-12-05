@@ -27,7 +27,7 @@ jobs:
           if [ ! -f "$date/lineages.yml" ]; then
             cp lineages.yml $date
           fi
-          cp lineages.yml latest
+          cp lineages.yml latest && rm lineages.yml
       - name: Commit and push
         run: |
           git pull origin main
