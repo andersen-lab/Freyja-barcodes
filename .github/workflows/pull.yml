@@ -30,11 +30,11 @@ jobs:
             date=$(date +%Y-%m-%d)
             mkdir $date
             # download pathogen barcodes
-            wget -O $date/barcode.csv https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.csv --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
-            wget -O $date/barcode.feather https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.feather --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
-            wget -O $date/barcode.html https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.html --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
-            wget -O $date/auspice_tree.json https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/data/auspice_tree.json --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
-            wget -O $date/reference.fasta https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/data/reference.fasta --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}'
+            wget -O $date/barcode.csv https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.csv --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}' || true
+            wget -O $date/barcode.feather https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.feather --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}' || true
+            wget -O $date/barcode.html https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/output/GENERATE_BARCODES/barcode.html --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}' || true
+            wget -O $date/auspice_tree.json https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/data/auspice_tree.json --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}' || true
+            wget -O $date/reference.fasta https://raw.githubusercontent.com/andersen-lab/Freyja-process-barcodes/main/${{ env.PATHOGEN }}/data/reference.fasta --header 'Authorization: token ${{ secrets.FREYJA_ACTION_KEY }}' || true
             if [ ! -d "latest" ]; then
               mkdir latest
             fi
