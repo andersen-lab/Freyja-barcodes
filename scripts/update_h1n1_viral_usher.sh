@@ -12,7 +12,9 @@
 # Environment overrides:
 #   FREYJA_ENV   conda/micromamba env prefix containing freyja + matUtils
 #                (default: /home/josh/micromamba/envs/freyja)
-#                Needs pandas<3 (Freyja uses groupby(axis=...)).
+#                Works with pandas 2, and with pandas 3 once Freyja includes the
+#                pandas-3 fix (andersen-lab/Freyja PR #333; released Freyja <= 2.0.7
+#                still needs pandas<3, or run with PYTHONPATH=<Freyja checkout>).
 #   GROUP        output directory name (default: H1N1_viral_usher_HA)
 
 set -euo pipefail
@@ -40,16 +42,15 @@ trap 'rm -rf "$WORK"' EXIT
 
 echo "[$(date -Is)] Downloading tree and reference for ${GROUP}"
 curl -fsSL --retry 3 -o "${WORK}/optimized.pb.gz" "${BASE}/optimized.pb.gz"
-curl -fsSL --retry 3 -o "${WORK}/reference.fasta" "${BASE}/${REF}"
+curl -fsSL --retry 3 -o "${WORK}/tree_reference.fa" "${BASE}/${REF}"
 
-# freyja barcode-build writes lineagePath.txt etc. into the cwd, so run in WORK.
+# The tree reference is too divergent from modern H1N1 to align reads to, so express
+# barcodes relative to CY121680.1 (same reference as H1N1/). See the python script.
+cp "${REPO}/H1N1/latest/reference.fasta" "${WORK}/reference.fasta"
 cd "$WORK"
-for fmt in csv feather; do
-  freyja barcode-build --pb optimized.pb.gz --outdir "out_${fmt}" --redo \
-    --pathogen H1N1 --format "${fmt}"
-done
-mv out_csv/usher_barcodes.csv barcode.csv
-mv out_feather/usher_barcodes.feather barcode.feather
+matUtils extract -i optimized.pb.gz -C lineagePaths.txt >/dev/null
+python "${REPO}/scripts/reroot_viral_usher_barcodes.py" lineagePaths.txt \
+  "${WORK}/tree_reference.fa" "${WORK}/reference.fasta" "${WORK}/barcode"
 
 cd "$REPO"
 [[ -s "${WORK}/barcode.csv" ]] || { echo "empty barcode.csv" >&2; exit 1; }
